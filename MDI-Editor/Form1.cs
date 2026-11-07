@@ -142,5 +142,11 @@
             if (txtBox == null) return;
             txtBox.SelectAll();
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            aboutBox about = new aboutBox();
+            about.ShowDialog(this);
+        }
     }
 }
