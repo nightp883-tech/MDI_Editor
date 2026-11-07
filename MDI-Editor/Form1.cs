@@ -98,5 +98,49 @@
             active.Tag = path;                              // дараагийн удаа шууд хадгална
             active.Text = System.IO.Path.GetFileName(path); // гарчгийг файлын нэрээр солино
         }
+
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form active = this.ActiveMdiChild; // одоо идэвхтэй байгаа child
+            if (active == null)
+            {
+                MessageBox.Show("Буцаах үйлдэл хийх цонх алга байна.");
+                return;
+            }
+
+            TextBox txtBox = active.Controls.OfType<TextBox>().FirstOrDefault();
+            if (txtBox == null) return;
+
+            if (txtBox.CanUndo)
+                txtBox.Undo();
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextBox txtBox = this.ActiveMdiChild.Controls.OfType<TextBox>().FirstOrDefault();
+            if (txtBox == null) return;
+            txtBox.Cut();
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextBox txtBox = this.ActiveMdiChild.Controls.OfType<TextBox>().FirstOrDefault();
+            if (txtBox == null) return;
+            txtBox.Copy();
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextBox txtBox = this.ActiveMdiChild.Controls.OfType<TextBox>().FirstOrDefault();
+            if (txtBox == null) return;
+            txtBox.Paste();
+        }
+
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TextBox txtBox = this.ActiveMdiChild.Controls.OfType<TextBox>().FirstOrDefault();
+            if (txtBox == null) return;
+            txtBox.SelectAll();
+        }
     }
 }
